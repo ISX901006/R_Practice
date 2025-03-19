@@ -1,0 +1,2 @@
+cd ~/Desktop/R
+echo "*.txt" > .gitignore
