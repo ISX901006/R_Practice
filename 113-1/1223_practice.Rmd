@@ -1,0 +1,34 @@
+---
+title: "1223_practice"
+author: "Shih"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r}
+# Nominal 變數
+gender <- factor(c("Male", "Female", "Female", "Male"))
+
+# Ordinal 變數
+education <- factor(c("Bachelor", "PhD", "Master", "High School"),
+                    levels = c("High School", "Bachelor", "Master", "PhD"),
+                    ordered = TRUE)
+
+gender
+education
+```
+
+```{r}
+# 數據框
+df <- data.frame(
+  Gender = c("Male", "Female", "Female", "Male"),
+  Education = c("Bachelor", "PhD", "Master", "High School")
+)
+
+# 生成交叉表
+xtabs(~ Gender + Education, data = df)
+```
+
