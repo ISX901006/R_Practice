@@ -1,0 +1,1074 @@
+---
+title: '1028'
+author: "Shih"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 1.7
+### (a) 用 rep 指令造出以下數列:"A" "A" "A" "A" "A" "B" "B" "B" "B" "C" "C" "C" "D" "D" "E"
+練習題
+```{R}
+# 使用 rep() 生成指定的數列
+result <- c(rep("A", 5), rep("B", 4), rep("C", 3), rep("D", 2), "E")
+
+# 打印結果
+print(result)
+
+```
+### (b) 用 seq, c 指令造出以下數列:"b" "d" "f" "h" "j" "l" "n" "p" "r" "t" "v" "x" "z" "a" "c" "e" "g" "i" "k" "m" "o" "q" "s" "u" "w" "y"
+
+```{R}
+# 使用 seq() 生成兩個部分的字母序列
+part1 <- letters[seq(2, 26, by = 2)]  # "b", "d", ..., "z"
+part2 <- letters[seq(1, 25, by = 2)]  # "a", "c", ..., "y"
+
+# 合併兩個部分的數列
+result <- c(part1, part2)
+
+# 打印結果
+print(result)
+
+```
+### (c) 產生以下數列:1,-1/2,1/3,-1/4...-1/20
+```{R}
+# 生成數列 1, -1/2, 1/3, -1/4, ..., -1/20
+n <- 1:20
+result <- (-1)^(n+1) / n
+print(result)
+
+```
+### (d) 1 2 3 4 5 6 2 3 4 5 6 3 4 5 6 4 5 6 5 6 6
+
+```{r}
+k<-1:6
+result<-c(k[1:6], k[2:6], k[3:6], k[4:6], k[5:6], k[6])
+result
+```
+### 產生以下文字數列 (提示: month.abb, seq):"Jan" "Mar" "May" "Jul" "Sep" "Nov" "Feb" "Apr" "Jun" "Aug" "Oct" "Dec"
+```{r}
+# 使用 month.abb 和 seq() 生成所需的數列
+odd_months <- month.abb[seq(1, 11, by = 2)]  # 生成奇數月份
+even_months <- month.abb[seq(2, 12, by = 2)] # 生成偶數月份
+
+# 合併奇數和偶數月份的數列
+result <- c(odd_months, even_months)
+print(result)
+```
+## 1.8 產生下列數列 (Hint: rep, seq, rev):
+
+### (a) 8 7 6 5 7 6 5 4 6 5 4 3 5 4 3 2 4 3 2 1
+pv <- c(rev(seq(5, 8)), rev(seq(4, 7)), rev(seq(3, 6)), rev(seq(2, 5)),rev(seq(1, 4)))
+pv
+## 1.9 利用 rep, seq 指令輸出下列向量:
+### (d) 2 2 4 4 6 6 8 8 10 10 12 12 14 14 16 16 18 18 20 20
+```{r}
+pv <- rep(seq(2, 20, by = 2), each = 2)
+pv
+```
+## 1.10 產生以下有規律的數列。(提示: 儘量使用 rep, seq)
+### (c) 數列：0 1 1 2 2 2 3 3 3 3 4 4 4 4 4
+seq
+
+### (d) 數列：1 2 5 10 20 50 100 ... 5 × 10^4
+```{r}
+d<- rep(0:4, times = 1:5)
+d
+```
+### (e) 數列：b d f h j l n p r t v x z
+```{r}
+result_e <- letters[seq(2, 26, by = 2)]
+result_e
+
+```
+
+
+##1.11 令 colors <- c("red", "yellow", "blue")。利用 paste 指令輸出下列文字向量
+### (a) "red flowers" "yellow flowers" "blue flowers"
+```{r}
+colors <- c("red", "yellow", "blue")
+paste(colors,"flowers",sep=" ") 
+```
+
+#### (d) "I like red, yellow, blue"
+```{r}
+#collapse合併
+paste("I like",paste(colors,collapse = ", "),sep=" ")
+```
+
+## 1.15
+### (a) 輸入以下矩陣並命名為 my.mat。
+     [,1] [,2] [,3]
+[1,]    1    7    3
+[2,]   10    5    0
+[3,]    2    4    8
+[4,]    6    9   11
+
+```{r}
+my.mat <- matrix(c(1, 7, 3, 10, 5, 0, 2, 4, 8, 6, 9, 11), nrow = 4, byrow = TRUE)
+
+```
+## 1.20 請將 (0, 1) 區間等分為 10 份子區間:
+
+
+```{r}
+j<-seq(0,1,length=10)
+j[10] #右端點
+```
+
+## 1.21 造出以下之矩陣,使得其行位名為 C1 ∼ C5 及列位名為 R1 ∼ R4:
+
+```{r}
+# 創建矩陣
+matr <- matrix(c(seq(1, 9, by = 2), seq(2, 10, by = 2), seq(11, 19, by = 2), seq(12, 20, by = 2)), ncol = 5, byrow = TRUE)
+
+# 為矩陣添加列名
+colnames(matr) <- c("c1", "c2", "c3", "c4", "c5")
+rownames(matr) <- c("r1","r2","r3","r4")
+
+matr
+```
+## 1.28 有一班級學生之數學成績如下 (成績已依座號順序排列):43 94 20 8 46 72 93 8 28 33 79 60 93 52 8
+### (a) 將資料輸入 R,並存至一向量物件,命名為 math.score。
+```{r}
+math.score<-c(43,94,20,8,46,72,93,8,28,33,79,60,93,52,8)
+math.score
+```
+### (b) 此成績紀錄,共有多少位同學?
+ml<-length(math.score)
+
+### (c) 列印出偶數座號同學之成績,並計算其平均數。
+```{r}
+mean(math.score[seq(2,length(math.score),by=2)])
+
+```
+
+## 1.32
+
+
+## 1.41
+### (a) 產生 (−1)^(i+1), i = 1, · · · , n (其中 n = 10) 如右: 1 -1 1 -1 1 · · · -1
+
+```{r}
+n<-10
+
+f<- (-1)^(1:n + 1)
+f
+```
+### (b) 產生 2i − 1, i = 1, · · · , n (其中 n = 10) 如右: 1 3 5 7 · · · -19
+```{r}
+n <- 10
+s<- 2*(1:n)-1
+s
+```
+### (c) 產生 (−1)i+1/(2i−1), i = 1, · · · , n (其中 n = 10) 如右: 1 −1/3 1/5 −1/7 · · ·1/19
+
+## 1.42 有一函數 f(x) = x^2 + x − 1, 其定義域為 (0, 1),請將 (0, 1) 等分為 10 份子區間,將每一子區間之右端點所形成的集合稱為 x,請計算 x 之函數值 f(x)。
+```{r}
+# 生成 (0, 1) 區間的右端點（等分為 10 份）
+x <- seq(0.1, 1, length.out = 10)
+
+# 定義函數 f(x) = x^2 + x - 1
+f <- function(x) {
+  x^2 + x - 1
+}
+
+# 計算每個右端點的 f(x) 值
+f_values <- f(x)
+
+# 顯示 x 和 f(x) 的結果
+cat("x 值:", x, "\n")
+cat("f(x) 值:", f_values, "\n")
+```
+## 畫長方形
+```{r}
+# 定義函數 f(x) = x^2 + x - 1
+f <- function(x) {
+  x^2 + x - 1
+}
+
+# 生成 (0, 1) 區間的右端點（等分為 10 份）
+x <- seq(0.1, 1, length.out = 10)
+
+# 計算每個 x 對應的 f(x) 值
+f_values <- f(x)
+
+# 繪製 f(x) 的曲線
+curve(f(x), from = 0, to = 1, col = "purple", lwd = 2, 
+      xlab = "x", ylab = "f(x)", main = "Filled Area, Vertical Lines, and Rectangles")
+
+# 使用 polygon 繪製曲線下方到 y=0 的填充區域
+x_fine <- seq(0, 1, length.out = 100)
+f_fine <- f(x_fine)
+
+polygon(c(x_fine, rev(x_fine)), c(rep(0, length(x_fine)), rev(f_fine)), 
+        col = rgb(0, 0, 1, 0.2), border = NA)
+
+# 使用 segments 繪製所有垂直線
+segments(x, 0, x, f_values, col = "blue", lty = 2)
+
+# 繪製長方形（每個子區間）
+rect(x - 0.1, 0, x, f_values, col = rgb(0, 1, 0, 0.2), border = "green")
+
+# 標示右端點的 f(x) 值
+points(x, f_values, col = "red", pch = 16)
+
+# 使用 text 標示點的位置
+text(x, f_values + 0.05, labels = paste0("(", round(x, 2), ", ", round(f_values, 2), ")"), 
+     pos = 3, cex = 0.8, col = "red")
+
+```
+
+## 1.47 四群學生,人數 (number) 是 10、20、30、40 人,平均體重 (weight) 分別是 50、55、60、65 公斤,計算全部學生的平均體重。(提示: 將 number 及 weight設定為數字向量。)
+```{r}
+# 設定人數和平均體重的數字向量
+number <- c(10, 20, 30, 40)
+weight <- c(50, 55, 60, 65)
+
+# 計算加權平均體重
+total_average_weight <- sum(number * weight) / sum(number)
+
+# 顯示結果
+cat("全部學生的平均體重為：", total_average_weight, "公斤\n")
+```
+
+## 3.1 
+畫出 $y = loga (x) x > 0$ 之圖形。
+
+```{r}
+a <- 2  # 可以將 a 設為其他值，如 2, 3, 10 等
+b <- 3
+c <- 0.5
+
+# 繪製 y = log_a(x) 的圖形
+curve(log(x, base = a), from = 0.01, to = 10, 
+      col = "blue", lwd = 2, ylab = expression(log[a](x)))
+
+# 添加 y = log_b(x) 的曲線
+curve(log(x, base = b), from = 0.01, to = 10, 
+      col = "red", lwd = 2, add = TRUE)
+
+# 添加 y = log_c(x) 的曲線
+curve(log(x, base = c), from = 0.01, to = 10, 
+      col = "green", lwd = 2, add = TRUE)
+# 添加水平線和垂直線
+abline(h=0,v=0,col="gray")
+
+#添加註解標籤(3,1為圖片上的xy位置)
+legend(3,1, legend = c(expression(log[2](x)), 
+                              expression(log[3](x)), 
+                              expression(log[0.5](x))),
+       col = c("blue", "red", "green"), lty = 1, lwd = 2)
+#"topright"：指定圖例位置為右上角。其他可用位置包括"topleft"、"bottomright"、"bottomleft" 等。
+
+# 添加網格線
+grid()
+
+
+```
+## 3.2
+若有一函數為 $f(x) = sin(kx)/√(k)$,畫出當 k = 2、4、9 時之函數圖形 (需以不同顏色呈現)。
+
+```{r}
+# 定義範圍
+xv <- seq(-2*pi, 2*pi, 0.01)
+
+# 繪製空白圖形
+plot(0, xlab = "x", ylab = "", xaxt="n",
+     main = expression(f(x) == sin(k * x) / sqrt(k)), 
+     type = "n", xlim = c(-6.5, 6.5), ylim = c(-0.7, 0.8))
+abline(h = 0, v = seq(-5/2 * pi, 5/2 * pi, pi/2), col = "#D3D3D380")
+
+# 設置 X 軸標籤
+labtxt <- expression(-2 * pi, -3 * pi / 2, -pi, -pi / 2, 0, pi / 2, pi, 3 * pi / 2, 2 * pi)
+
+# 繪製 X 軸
+axis(1, labtxt, at = seq(-4/2 * pi, 4/2 * pi, 1/2 * pi))
+
+# 定義 f(x) 函數
+f <- function(x, k) {
+  sin(k * x) / sqrt(k)
+}
+
+# 繪製不同 k 值的 f(x) 圖形
+points(xv, f(xv, k = 2), col = "#FF0000", lwd = 2, type = "l")
+points(xv, f(xv, k = 4), col = "#00FF00", lwd = 2, type = "l")
+points(xv, f(xv, k = 9), col = "#0000FF", lwd = 2, type = "l")
+
+# 添加圖例
+legend("topright", legend = paste("k =", c(2, 4, 9), sep = ""), 
+       lty = 1, lwd = 2, col = c("#FF0000", "#00FF00", "#0000FF"))
+```
+
+### 3.3
+```{r}
+# 定義範圍
+theta <- seq(0, 2*pi, length.out = 1000)
+
+# 定義 x 和 y
+x <- 1.5 * cos(theta) - cos(3 * theta)
+y <- 1.5 * sin(theta) - sin(3 * theta)
+
+# 繪製圖形
+plot(x, y, type = "l", col = "blue", lwd = 2, 
+     main = "Parametric Plot of x = 1.5*cos(θ) - cos(3θ), y = 1.5*sin(θ) - sin(3θ)", 
+     xlab = "x", ylab = "y", asp = 1)
+
+```
+### 3.36
+```{r}
+# 設置繪圖窗口，分成 1 行 2 列
+par(mfrow = c(1, 2))
+
+# 定義範圍
+theta <- seq(0, 2*pi, length.out = 20000)
+
+# 計算參數方程
+xv <- 1.5 * cos(theta) - cos(30 * theta)
+yv <- 1.5 * sin(theta) - sin(30 * theta)
+
+# 繪製第一個圖形
+plot(xv, yv, type = "l", xlab = "x", ylab = "y")
+
+# 定義第二個圖形的範圍
+r1 <- 2
+xv <- seq(-2, 2, 0.1)
+yv <- sqrt(r1^2 - xv^2)
+
+# 繪製第二個圖形
+plot(xv, yv, asp = 1, xlab = "", ylab = "")
+abline(v = 0, h = 0)
+
+# 添加另一個圓的點
+r2 <- 1.8
+thv <- seq(0, pi, length.out = 40)
+points(r2 * cos(thv), r2 * sin(thv), pch = 16)
+
+
+```
+
+$$
+\left\{
+\begin{aligned}
+  x &= r \cos \theta \\
+  y &= r \sin \theta
+\end{aligned}
+\right\}
+\quad \Leftrightarrow \quad
+\left\{
+\begin{aligned}
+  \theta &= \arctan \frac{y}{x} \\
+  r &= \sqrt{x^2 + y^2}
+\end{aligned}
+\right\}
+$$
+```{r}
+# 設置繪圖窗口，分成 1 行 2 列
+par(mfrow = c(1, 2))
+
+# 定義範圍
+theta <- seq(0, 2*pi, length.out = 1000)
+
+# 四葉曲線 (Rose curve)
+r <- sin(2 * theta)
+plot(r * cos(theta), r * sin(theta), asp = 1, type = "l", 
+     xlab = "r * cos(theta)", ylab = "r * sin(theta)")
+
+# 螺旋曲線 (Spiral)
+r <- 2 * cos(theta) + 1
+plot(r * cos(theta), r * sin(theta), asp = 1, type = "l", 
+     xlab = "r * cos(theta)", ylab = "r * sin(theta)")
+
+```
+
+\item Four-leaved rose (四瓣玫瑰線)：$r = \sin 2\theta$.
+\item Limacon (帕斯卡蝸線)：$r = 2 \cos \theta + 1$.
+\item Cardioid (心臟線)：$r = 1 - \sin \theta$.
+\item Lemniscate (雙紐線)：$r^2 = \cos 2\theta$.
+
+```{r}
+# 設置繪圖窗口，分成 2 行 2 列
+par(mfrow = c(2, 2))
+
+# 定義範圍
+theta <- seq(0, 2*pi, length.out = 1000)
+
+# 1. Four-leaved rose (四瓣玫瑰線): r = sin(2 * theta)
+r <- sin(2 * theta)
+plot(r * cos(theta), r * sin(theta), type = "l", col = "blue", 
+     xlab = "x", ylab = "y", main = "Four-leaved Rose", asp = 1)
+
+# 2. Limacon (帕斯卡蝸線): r = 2 * cos(theta) + 1
+r <- 2 * cos(theta) + 1
+plot(r * cos(theta), r * sin(theta), type = "l", col = "red", 
+     xlab = "x", ylab = "y", main = "Limacon", asp = 1)
+
+# 3. Cardioid (心臟線): r = 1 - sin(theta)
+r <- 1 - sin(theta)
+plot(r * cos(theta), r * sin(theta), type = "l", col = "green", 
+     xlab = "x", ylab = "y", main = "Cardioid", asp = 1)
+
+# 4. Lemniscate (雙紐線): r^2 = cos(2 * theta)
+r <- sqrt(cos(2 * theta))
+plot(r * cos(theta), r * sin(theta), type = "l", col = "purple", 
+     xlab = "x", ylab = "y", main = "Lemniscate", asp = 1)
+
+```
+## 3.6
+畫出 sin 及 cos 函數如下圖。(提示: curve, abline, expression, text)
+
+```{r}
+# 設置繪圖範圍
+# 繪製 sin(x) 函數
+curve(sin(x), -2*pi, 2*pi, lwd = 2, col = "red", xlab = "", ylab = "", xaxt = "n")
+
+# 繪製 cos(x) 函數
+curve(cos(x), lwd = 2, col = "green", add = TRUE)
+
+# 添加水平和垂直輔助線
+abline(h = 0, v = 0, col = "#b0b0b080")
+
+# 設置 X 軸標籤
+labtxt <- expression(-2 * pi, -pi, 0, pi, 2 * pi)
+axis(1, labels = labtxt, at = seq(-2 * pi, 2 * pi, pi))
+
+# 添加圖例
+legend(2.5, 1, legend = c("sin(x)", "cos(x)"), col = c("red", "green"), lty = 1, lwd = 2)
+
+# 添加標題
+title("sin(x) and cos(x)")
+
+
+```
+## 3.7
+畫出 tan 函數如下圖。(提示 1: plot, curve, axis)
+(提示 2: points.at <- c(-2*pi, -3*pi/2, -pi/2, pi/2, 3*pi/2, 2*pi))
+
+```{r}
+# 繪製空白圖形框架
+plot(0, xlim = c(-3*pi/2, 3*pi/2), ylim = c(-20, 20), type = "n", 
+     xlab = "x", ylab = "y", xaxt = "n", main = "tan(x)")
+
+# 添加水平和垂直輔助線
+abline(h = 0, v = 0, col = "gray")
+
+# 設置 X 軸標籤
+labeltxt <- c(expression(-3*pi/2), expression(-pi), expression(-pi/2), 
+              0, expression(pi/2), expression(pi), expression(3*pi/2))
+axis(1, labels = labeltxt, at = seq(-3*pi/2, 3*pi/2, pi/2))
+
+# 繪製 tan(x) 函數，分段繪製以避免無限值
+curve(tan(x), -2*pi + 0.0001, -3*pi/2 - 0.0001, add = TRUE, col = "red", lwd = 2)  # 新增
+curve(tan(x), -3*pi/2 + 0.0001, -pi - 0.0001, add = TRUE, col = "red", lwd = 2)
+curve(tan(x), -pi + 0.0001, -pi/2 - 0.0001, add = TRUE, col = "red", lwd = 2)
+curve(tan(x), -pi/2 + 0.0001, pi/2 - 0.0001, add = TRUE, col = "red", lwd = 2)
+curve(tan(x), pi/2 + 0.0001, pi - 0.0001, add = TRUE, col = "red", lwd = 2)
+curve(tan(x), pi + 0.0001, 3*pi/2 - 0.0001, add = TRUE, col = "red", lwd = 2)
+curve(tan(x), 3*pi/2 + 0.0001, 2*pi - 0.0001, add = TRUE, col = "red", lwd = 2)  # 新增
+
+
+```
+## 3.10 
+下圖紅色曲線為標準常態機率密度函數 (dnorm),請畫出下圖。(限用兩次 arrows, 一次 text,一次 abline,詳見提示。)
+```{r}
+# 繪製標準正態分佈曲線
+curve(dnorm(x), -4, 4, col = "red", xaxt = "n", xlab = "", 
+      ylab = "density", main = "Normal Distribution", lwd = 2)
+
+# 添加垂直輔助線
+abline(v = c(-3, -2, -1, 0, 1, 2, 3), lty = 2)
+
+# 添加文字標註
+text(rep(0.3, 3), seq(0.3, 0.1, -0.1), c("68.26%", "95.44%", "99.74%"))
+
+# 設置 X 軸標籤
+labeltxt <- c(expression(mu - 3 * sigma), expression(mu - 2 * sigma), 
+              expression(mu - sigma), expression(mu), 
+              expression(mu + sigma), expression(mu + 2 * sigma), 
+              expression(mu + 3 * sigma))
+axis(1, at = seq(-3, 3, 1), labels = labeltxt)
+
+# 添加箭頭
+ix <- rep(0.5, 3)
+iy <- seq(0.1, 0.3, 0.1)
+ex <- seq(3, 1)
+ey <- iy
+
+arrows(ix, iy, ex, ey, lwd = 2, length = 0.1, angle = 30)
+arrows(-ix, iy, -ex, ey, lwd = 2, length = 0.1, angle = 30)
+
+```
+## 3.11
+```{r}
+# 定義函數 f(x, alpha)
+f <- function(x, alpha) {
+  alpha * ((x^2 - 1)^2)^(1/3)
+}
+
+# 繪製空白圖形框架
+plot(0, type = "n", xlim = c(-4, 4), ylim = c(-2, 8), 
+     xlab = "", ylab = expression(f(x, alpha)))
+
+# 添加輔助線
+abline(v = 0, h = 0, col = "#D3D3D3")
+
+# 定義 x 範圍
+xv <- seq(-4, 4, 0.005)
+
+# 繪製不同 alpha 值的 f(x) 曲線
+points(xv, f(xv, alpha = 1), type = "l", lty = 1, col="red")
+points(xv, f(xv, alpha = 2), type = "l", lty = 2, col="blue")
+
+
+# 添加圖例
+legtxt <- expression(alpha == 1, alpha == 2)
+legend("top", legend = legtxt, lty = 1:3,cex = 1)
+
+```
+## 3.15
+
+
+$f(x; \sigma) = \frac{x}{\sigma^2} e^{-\frac{x^2}{2\sigma^2}}, \quad x \geq 0$
+
+```{r}
+# 定義 Rayleigh 分佈的概率密度函數
+rayleigh_pdf <- function(x, sigma) {
+  (x / sigma^2) * exp(-x^2 / (2 * sigma^2))
+}
+
+# 設置 x 範圍
+x <- seq(0, 10, length.out = 1000)
+
+# 繪製不同 sigma 值的 PDF 曲線
+plot(x, rayleigh_pdf(x, sigma = 0.5), type = "l", col = "blue", lwd = 2, 
+     xlab = "x", ylab = "f(x)", main = "Rayleigh Distribution", ylim = c(0, 1.2))
+
+# 添加不同 sigma 值的曲線
+lines(x, rayleigh_pdf(x, sigma = 1.0), col = "black", lwd = 2)
+lines(x, rayleigh_pdf(x, sigma = 2.0), col = "green", lwd = 2)
+lines(x, rayleigh_pdf(x, sigma = 3.0), col = "red", lwd = 2)
+lines(x, rayleigh_pdf(x, sigma = 4.0), col = "magenta", lwd = 2)
+
+# 添加圖例
+legend("topright", legend = c(expression(sigma == 0.5), expression(sigma == 1.0), 
+                              expression(sigma == 2.0), expression(sigma == 3.0), 
+                              expression(sigma == 4.0)),
+       col = c("blue", "black", "green", "red", "magenta"), lwd = 2,  cex = 0.8)
+```
+
+## 3.18
+對數常態分佈（Log-Normal Distribution）的概率密度函數，其數學公式為：
+
+$f(x; \mu, \sigma) = \frac{1}{x \sqrt{2\pi\sigma^2}} \exp \left( -\frac{(\ln x - \mu)^2}{2\sigma^2} \right), \quad x > 0, \, \mu \in \mathbb{R}, \, \sigma > 0$ 
+
+```{r}
+# 定義 Log-Normal 分佈的 PDF 函數
+lognorm_pdf <- function(x, mu = 0, sigma = 1) {
+  (1 / (x * sqrt(2 * pi * sigma^2))) * 
+    exp(-((log(x) - mu)^2) / (2 * sigma^2))
+}
+
+# 設置 x 範圍
+x <- seq(0.01, 3, length.out = 1000)
+
+# 繪製不同 sigma 值的 PDF 曲線
+plot(x, lognorm_pdf(x, mu = 0, sigma = 0.25), type = "l", col = "red", lwd = 2, 
+     xlab = "x", ylab = "Density", main = "Log-Normal Distribution", ylim = c(0, 2))
+
+# 添加不同 sigma 值的曲線
+lines(x, lognorm_pdf(x, mu = 0, sigma = 0.5), col = "green", lwd = 2)
+lines(x, lognorm_pdf(x, mu = 0, sigma = 1), col = "blue", lwd = 2)
+
+# 添加圖例
+legend("topright", legend = c(expression(sigma == 0.25), expression(sigma == 0.5), expression(sigma == 1)),
+       col = c("red", "green", "blue"), lwd = 2)
+```
+
+## 3.20
+
+
+```{r}
+# 定義函數 f(x) 和 f'(x)
+f <- function(x) 12 * x^5 - 20 * x^3 + 7
+f_prime <- function(x) 60 * x^4 - 60 * x^2
+
+# 使用牛頓法尋找方程的根，加入 NA 檢查
+newton_method <- function(f, f_prime, x0, tol = 1e-7, max_iter = 100) {
+  x <- x0
+  for (i in 1:max_iter) {
+    f_prime_x <- f_prime(x)
+    if (is.na(f_prime_x) || f_prime_x == 0) {
+      return(NA)  # 如果導數為 NA 或 0，返回 NA
+    }
+    x_new <- x - f(x) / f_prime_x
+    if (is.na(x_new) || abs(x_new - x) < tol) {
+      return(x_new)
+    }
+    x <- x_new
+  }
+  return(NA)  # 未收斂
+}
+
+# 設置初始值並求解
+initial_guesses <- seq(-2, 2, by = 0.5)
+roots <- sapply(initial_guesses, function(x0) newton_method(f, f_prime, x0))
+unique_roots <- unique(round(roots, 5))  # 去重並取前5位小數
+
+cat("Roots found using Newton's Method:", unique_roots, "\n")
+
+# 設置區間和分割數
+a <- -1
+b <- 0.5
+n <- 5
+dx <- (b - a) / n
+x_vals <- seq(a, b, length.out = n + 1)
+y_vals <- f(x_vals)
+
+# 計算黎曼上和和下和
+upper_sum <- sum(pmax(y_vals[-1], y_vals[-length(y_vals)]) * dx)
+lower_sum <- sum(pmin(y_vals[-1], y_vals[-length(y_vals)]) * dx)
+midpoint_sum <- sum(f(seq(a + dx/2, b - dx/2, length.out = n)) * dx)
+
+# 使用 integrate() 函數計算定積分
+integral_result <- integrate(f, a, b)
+
+# 輸出黎曼和和積分結果
+cat("Upper Riemann Sum:", upper_sum, "\n")
+cat("Lower Riemann Sum:", lower_sum, "\n")
+cat("Midpoint Riemann Sum:", midpoint_sum, "\n")
+cat("Integral from", a, "to", b, ":", integral_result$value, "\n")
+
+# 繪製函數曲線和黎曼和
+curve(f(x), from = -1.5, to = 1.5, col = "black", lwd = 2, 
+      xlab = "Index", ylab = "f(x)")
+
+# 添加黎曼上和和下和的矩形
+rect(x_vals[-1], 0, x_vals[-length(x_vals)], pmax(y_vals[-1], y_vals[-length(y_vals)]), 
+     border = "red", col = rgb(1, 0, 0, 0.2))
+rect(x_vals[-1], 0, x_vals[-length(x_vals)], pmin(y_vals[-1], y_vals[-length(y_vals)]), 
+     border = "blue", col = rgb(0, 0, 1, 0.2))
+
+# 添加文本說明
+text(1, 15, labels = paste("n =", n, 
+                           "\n上和", round(upper_sum, 4), 
+                           "\n中點", round(midpoint_sum, 4),
+                           "\n下和", round(lower_sum, 4)))
+```
+## 3.32
+```{r}
+# 設置繪圖窗口，分成 1 行 2 列
+par(mfrow = c(1, 2))
+
+# 定義函數 f1(x) 和 f2(x)
+f1 <- function(x) x^2 - 4
+f2 <- function(x) -x^2 - 2*x
+
+# 第一個圖
+plot(0, xlim = c(-4, 3), ylim = c(-5, 7), type = "n", xlab = "", ylab = "", axes = FALSE)
+curve(f1(x), -4, 1.5, add = TRUE, col = "blue", lwd = 2)
+curve(f2(x), -4, 1.5, add = TRUE, col = "red", lwd = 2)
+
+# 設置 x 值範圍
+xv <- seq(-3, 1, 0.5)
+
+# 在函數上添加標注
+text(xv, f1(xv), labels = 1:length(xv), pos = 3, col = "blue")
+text(rev(xv), f2(rev(xv)), labels = length(xv):(2 * length(xv) + 1), pos = 1, col = "red")
+
+# 第二個圖
+plot(0, xlim = c(-4, 3), ylim = c(-5, 8), type = "n", xlab = "", ylab = "", axes = FALSE)
+xv <- seq(-3, 1, 0.05)
+
+# 填充區域
+polygon(c(xv, rev(xv)), c(f1(xv), f2(rev(xv))), col = "lightblue1", border = NA)
+
+# 繪製兩個函數的曲線
+curve(f1(x), -3, 1.2, add = TRUE, col = "blue", lwd = 2)
+curve(f2(x), -3, 1.2, add = TRUE, col = "red", lwd = 2)
+
+# 添加箭頭
+arrows(-4, 0, 1.5, 0, length = 0.1, col = "black")
+arrows(0, -5, 0, 7, length = 0.1, col = "black")
+
+# 添加函數標籤
+ers1 <- expression(y == x^2 - 4)
+ers2 <- expression(y == -x^2 - 2*x)
+text(-2 + 0.4, -4, ers1, col = "blue")
+text(1.5, -1.5, ers2, col = "red")
+
+# 添加坐標標注
+text(c(1.7, 0), c(0, 7), c("x", "y"))
+
+# 添加紅色的交點
+points(c(-3, -3, 1), c(5, -3, -3), pch = 16, col = "red")
+text(c(-3, -3, 1), c(5, -3, -3), labels = c("(-3, 5)", "(-3, -3)", "(1, -3)"), pos = 3, col = "red")
+
+# 添加其他點
+other_x <- c(-3, 0, 0)
+other_y <- c(0, 0, -5)
+points(other_x, other_y, pch = 3, col = "black")
+text(other_x, other_y, labels = paste("(", other_x, ",", other_y, ")", sep = ""), pos = 4)
+
+# 添加下方的點
+points(c(0, 0), c(-4.5, -5), pch = 3, col = "black")
+text(c(0, 0), c(-4.4, -4.5), labels = c("(-4, -5)", "(-5, -5)"), pos = 4)
+
+```
+##3.32(b)
+```{r}
+# 設置繪圖窗口
+par(mfrow = c(1, 1))
+
+# 定義函數 f1(x) 和 f2(x)
+f1 <- function(x) x^2
+f2 <- function(x) -2 * x^4
+
+# 繪製圖形
+plot(0, xlim = c(-1.5, 1.5), ylim = c(-2, 1), type = "n", xlab = "", ylab = "", axes = FALSE)
+
+# 設置 x 值範圍
+xv <- seq(-1, 1, length.out = 100)
+
+# 填充區域
+polygon(c(xv, rev(xv)), c(f1(xv), f2(rev(xv))), col = "lightblue1", border = NA)
+
+# 繪製兩個函數的曲線
+curve(f1(x), from = -1, to = 1, col = "magenta", lwd = 2, add = TRUE)
+curve(f2(x), from = -1, to = 1, col = "cyan", lwd = 2, add = TRUE)
+
+# 添加 X 和 Y 軸線
+abline(h = 0, v = 0, col = "gray", lwd = 1, lty = 2)
+
+# 添加箭頭
+arrows(-1.5, 0, 1.5, 0, length = 0.1, col = "black")  # X 軸
+arrows(0, -2, 0, 1, length = 0.1, col = "black")  # Y 軸
+
+# 添加函數標籤
+text(0.8, 0.8, expression(y == x^2), col = "magenta")
+text(-0.8, -1.2, expression(y == -2 * x^4), col = "cyan")
+
+# 標記極值點
+points(0, 0, pch = 16, col = "red")  # 極值點 (0, 0)
+text(0, 0.1, "(0, 0)", pos = 3, col = "red")
+
+points(-1, f1(-1), pch = 16, col = "red")  # 極值點 (-1, 1)
+text(-1, f1(-1) + 0.1, "(-1, 1)", pos = 3, col = "red")
+
+points(1, f1(1), pch = 16, col = "red")  # 極值點 (1, 1)
+text(1, f1(1) + 0.1, "(1, 1)", pos = 3, col = "red")
+
+points(-1, f2(-1), pch = 16, col = "red")  # 極值點 (-1, -2)
+text(-1, f2(-1) - 0.1, "(-1, -2)", pos = 1, col = "red")
+
+points(1, f2(1), pch = 16, col = "red")  # 極值點 (1, -2)
+text(1, f2(1) - 0.1, "(1, -2)", pos = 1, col = "red")
+
+# 添加坐標標注
+text(1.4, -0.1, "x", col = "black")
+text(0.1, 0.9, "y", col = "black")
+
+```
+## 3.33
+```{r}
+# 設置繪圖窗口
+par(mfrow = c(1, 1))
+
+# 定義兩個函數
+f1 <- function(x) x^2 + 1
+f2 <- function(x) 2*x - 2
+
+# 繪製空白圖形
+plot(0, xlim = c(-5, 5), ylim = c(-5, 10), type = "n", xlab = "", ylab = "", axes = FALSE)
+
+# 設置 x 值範圍
+xv <- seq(-1, 2, length.out = 100)
+
+# 填充兩條曲線之間的區域
+polygon(c(xv, rev(xv)), c(f1(xv), f2(rev(xv))), col = "lightblue", border = NA)
+
+# 繪製兩條曲線
+curve(f1(x), from = -5, to = 5, col = "brown", lwd = 2, add = TRUE)
+curve(f2(x), from = -5, to = 5, col = "brown", lwd = 2, add = TRUE)
+
+# 添加 X 和 Y 軸
+abline(h = 0, v = 0, col = "gray", lwd = 1, lty = 2)
+
+# 添加交點標注
+points(-1, f1(-1), pch = 16, col = "red")
+text(-1, f1(-1) + 0.5, "(-1, 2)", pos = 3, col = "red")
+points(2, f2(2), pch = 16, col = "red")
+text(2, f2(2) - 0.5, "(2, 2)", pos = 1, col = "red")
+
+# 添加箭頭
+arrows(-5, 0, 5, 0, length = 0.1, col = "black")  # X 軸
+arrows(0, -5, 0, 10, length = 0.1, col = "black")  # Y 軸
+
+# 添加函數標籤
+text(1.5, f1(1.5) + 0.5, expression(y == x^2 + 1), col = "brown")
+text(0.5, f2(0.5) - 0.5, expression(y == 2 * x - 2), col = "brown")
+
+# 添加坐標標注
+text(5.2, -0.1, "x", col = "black")
+text(0.1, 9.8, "y", col = "black")
+```
+
+## 3.34
+```{r}
+# 設置數據點
+x <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 14)
+y <- c(7.5, 6.9, 6.1, 5.6, 5.4, 4.9, 4.5, 4.2, 4.0, 1.9)
+
+# 創建空白圖形
+plot(x, y, xlim = c(0, 15), ylim = c(0, 9), type = "n", 
+     xlab = "Years after 1991", ylab = "Percentage of unemployed", axes = FALSE)
+
+# 繪製點
+points(x, y, pch = 16, col = "blue")
+
+# 添加數據點標注
+text(x, y, labels = paste0("(", x, ", ", y, ")"), pos = 3)
+
+# 計算最小二乘法回歸線
+fit <- lm(y ~ x)
+
+# 繪製最小二乘法回歸線
+abline(fit, col = "brown", lwd = 2, lty = 2)
+
+# 繪製 X 和 Y 軸
+axis(1, at = 0:15)
+axis(2, at = seq(0, 9, by = 1))
+
+# 添加虛線到 Y = 2 的水平線
+abline(h = 2, col = "gray", lty = 2)
+
+# 添加 X 和 Y 軸箭頭
+arrows(0, 0, 15, 0, length = 0.1, col = "black")  # X 軸
+arrows(0, 0, 0, 9, length = 0.1, col = "black")  # Y 軸
+
+# 添加回歸方程標注
+equation <- bquote(y == .(round(coef(fit)[2], 3)) * x + .(round(coef(fit)[1], 3)))
+text(10, 7, equation, col = "brown")
+
+# 添加 X 和 Y 軸標籤
+text(15.2, -0.3, "x", col = "black")
+text(-0.3, 9, "y", col = "black")
+
+```
+
+## 5.1
+有三個矩陣如下，計算 (a) $AB$、(b) $2A + 3C^T$ 的矩陣運算結果。
+$$
+A = \begin{bmatrix}
+2 & 4 & -1 \\
+5 & 8 & 0
+\end{bmatrix}, \quad
+B = \begin{bmatrix}
+2 & -5 & 1 & 4 \\
+4 & 2 & 0 & 3 \\
+-3 & 1 & 2 & 0
+\end{bmatrix}, \quad
+C = \begin{bmatrix}
+2 & -1 \\
+8 & -3 \\
+-6 & 2
+\end{bmatrix}.
+$$
+```{r}
+# 定義矩陣 A, B, C
+A <- matrix(c(2, 5, 4, 8, -1, 0), nrow = 2, byrow = TRUE)
+B <- matrix(c(2, -5, 1, 4, 4, 2, 0, 3, -3, 1, 2, 0), nrow = 3, byrow = TRUE)
+C <- matrix(c(2, -1, 8, -3, -6, 2), nrow = 3, byrow = TRUE)
+
+# (a) 計算 AB
+AB <- A %*% B
+
+# (b) 計算 2A + 3C^T
+result_b <- 2 * A + 3 * t(C)
+
+# 輸出結果
+AB
+result_b
+
+```
+
+## 5.2
+
+寫一個R函式(命名為my.inverse)，使其執行時會要求使用者輸入一個3×3矩陣(scan)，在計算其反矩陣後，回傳原始輸入矩陣及其反矩陣。(提示: solve)。請利用以下矩陣做測試:
+$$
+\begin{bmatrix}
+3 & 5 & -1 \\
+2 & -1 & 3 \\
+4 & 2 & 3
+\end{bmatrix}
+$$
+
+```{r}
+test_matrix <- matrix(c(3, 2, 4, 5, -1, 2, -1, 3, 3), nrow=3, byrow=TRUE)
+my.inverse <- solve(test_matrix)
+my.inverse
+```
+
+## 5.3
+
+$$
+A = \begin{bmatrix}
+1 & 3 & 2 \\
+3 & 1 & 1
+\end{bmatrix},
+B = \begin{bmatrix}
+1 & 1 & 1 \\
+2 & 3 & 3
+\end{bmatrix},
+C = \begin{bmatrix}
+3 & 0 & 4 \\
+1 & 1 & 7
+\end{bmatrix}
+$$
+求下列各題中的矩陣X：
+(a) $A - B + 2X = C + 3A + X$
+(b) $3X + A + B + C = A - 2B + 4C + X$
+```{r}
+A <- matrix(c(1,3,3,1,2,1), nrow=2, byrow=TRUE)
+B <- matrix(c(1,2,1,3,1,3), nrow=2, byrow=TRUE)
+C <- matrix(c(3,1,0,1,4,7), nrow=2, byrow=TRUE)
+
+# (a) 求解 X = C + 2A + B
+X_a <- C + 2*A + B
+X_a
+
+# (b) 求解 X = (-3B + 3C)/2
+X_b <- (-3*B + 3*C)/2
+X_b
+
+```
+
+## 5.4
+
+$$
+A = \begin{bmatrix}
+1 & 2 & 3 \\
+4 & 5 & 6
+\end{bmatrix},
+B = \begin{bmatrix}
+3 & 1 & 8 \\
+6 & 2 & 5
+\end{bmatrix}
+$$
+求$(A + B)^T$和$A^T + B^T$。
+```{r}
+A <- matrix(c(1,4,2,5,3,6), nrow=2, byrow=TRUE)
+B <- matrix(c(3,6,1,2,8,5), nrow=2, byrow=TRUE)
+
+# 計算 (A + B)^T 和 A^T + B^T
+sum_transpose <- t(A + B)
+transpose_sum <- t(A) + t(B)
+sum_transpose  # 輸出 (A + B)^T
+transpose_sum 
+```
+## 5.5
+$$
+A = \begin{bmatrix}
+1 & 0 & 1 \\
+0 & 1 & 2 \\
+2 & 0 & 1
+\end{bmatrix},
+B = \begin{bmatrix}
+2 & 3 & 1 \\
+3 & 2 & 4 \\
+3 & 5 & 1
+\end{bmatrix}
+$$
+(1) 試求$A^{-1}$ (2) 若$AX = B$，求$X$ (3) 若$XA = B$，求$X$
+```{r}
+A <- matrix(c(1,0,2,0,1,0,1,2,1), nrow=3, byrow=TRUE)
+B <- matrix(c(2,3,3,3,2,5,1,4,1), nrow=3, byrow=TRUE)
+# (1) A^(-1)
+solve(A)
+# (2) AX = B
+solve(A, B)
+# (3) XA = B
+t(solve(t(A), t(B)))
+```
+## 5.6
+一個2×2矩陣
+$$
+A = \begin{bmatrix}
+a & b \\
+c & d
+\end{bmatrix}
+$$
+的反矩陣公式為
+$$
+A^{-1} = \frac{1}{ad-bc}\begin{bmatrix}
+d & -b \\
+-c & a
+\end{bmatrix}
+$$
+試寫一R函式，(a)求2×2矩陣之反矩陣，以
+$$
+A = \begin{bmatrix}
+1 & 3 \\
+2 & 4
+\end{bmatrix}
+$$
+為例 (b)與R內建函式solve相比較。
+```{r}
+A <- matrix(c(1,2,3,4), nrow=2, byrow=TRUE)
+# 使用公式
+a <- A[1,1]; b <- A[1,2]; c <- A[2,1]; d <- A[2,2]
+det <- a*d - b*c
+(1/det) * matrix(c(d,-b,-c,a), nrow=2, byrow=TRUE)
+# 使用solve()
+solve(A)
+```
+
+## 5.7
+有$A$、$B$兩矩陣如下：
+$$
+A = \begin{bmatrix}
+3 & -2 \\
+1 & 4 \\
+2 & 5
+\end{bmatrix},
+B = \begin{bmatrix}
+1 & 4 & 3 \\
+2 & 2 & 1
+\end{bmatrix}
+$$
+試求$A^T + 2B + AB + BA$
+```{r}
+A <- matrix(c(3,1,2,-2,4,5), nrow=3, byrow=TRUE)
+B <- matrix(c(1,4,3,2,2,1), nrow=2, byrow=TRUE)
+
+# 分別計算
+AT <- t(A)  # 2×3
+AB <- A %*% B  # 3×3
+BA <- B %*% A  # 2×2
+
+AT
+AB
+BA
+```   
+## 5.8
+令$\mathbf{u} = (2,4,4)$，試求在$\mathbf{u}$方向的單位向量。（若$\mathbf{x} = (x_1,x_2,\cdots,x_n)$為一向量，則在其方向的單位向量為$\frac{1}{|\mathbf{x}|}\mathbf{x}$，其中$|\mathbf{x}| = \sqrt{x_1^2 + x_2^2 + \cdots + x_n^2}$）
+```{r}
+u <- c(2,4,4)
+u/sqrt(sum(u^2))
+```
+
+## 5.9
+ 兩向量$\vec{u} = (u_1,u_2,\cdots,u_p)$及$\vec{v} = (v_1,v_2,\cdots,v_p)$的cosine夾角$\theta$，可用下列式子表示：
+$$
+\cos\theta = \frac{\vec{u}\cdot\vec{v}}{|\vec{u}||\vec{v}|}
+$$
+其中$\vec{u}\cdot\vec{v} = \sum_{i=1}^p u_iv_i$，$|\vec{u}| = \sqrt{\sum_{i=1}^p u_i^2}$和$|\vec{v}| = \sqrt{\sum_{i=1}^p v_i^2}$。現若有向量$\vec{u} = (3,4,0)$和$\vec{v} = (4,4,2)$，試計算此兩向量之間的cosine夾角$(cos\theta)$。
+```{r}
+u <- c(3,4,0)
+v <- c(4,4,2)
+sum(u*v)/(sqrt(sum(u^2))*sqrt(sum(v^2)))
+```
+

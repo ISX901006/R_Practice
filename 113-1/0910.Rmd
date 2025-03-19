@@ -1,0 +1,72 @@
+---
+title: "0910"
+author: "Shih"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 介紹
+
+本文檔將展示一些 R 語言的基本數學函數，包括 sin、cos、指數運算和絕對值函數。我們將通過一些簡單的例子來說明這些函數的使用方法。
+
+## 三角函數：sin 和 cos
+
+sin 和 cos 是常用的三角函數。讓我們看看它們在不同角度下的值：
+
+```{r trig_functions}
+angles <- seq(0, 2*pi, by = pi/4)
+sin_values <- sin(angles)
+cos_values <- cos(angles)
+
+data.frame(Angle = angles, Sine = sin_values, Cosine = cos_values)
+```
+
+我們可以繪製這些值的圖形：
+
+```{r trig_plot, fig.width=8, fig.height=6}
+plot(angles, sin_values, type = "l", col = "blue", ylim = c(-1, 1),
+     xlab = "Angle (radians)", ylab = "Value", main = "Sine and Cosine Functions")
+lines(angles, cos_values, col = "red")
+legend("topright", legend = c("sin", "cos"), col = c("blue", "red"), lty = 1)
+```
+
+## 指數函數：x^2
+
+指數函數是另一個常見的數學運算。這裡我們展示 x^2 的例子：
+
+```{r exp_function}
+x <- seq(-5, 5, by = 0.5)
+y <- x^2
+
+data.frame(X = x, X_squared = y)
+```
+
+讓我們繪製 x^2 的圖形：
+
+```{r exp_plot, fig.width=8, fig.height=6}
+plot(x, y, type = "l", col = "green",
+     xlab = "x", ylab = "y", main = "y = x^2")
+```
+
+## 絕對值函數：abs
+
+絕對值函數返回一個數的正值。讓我們看看它如何處理正數和負數：
+
+```{r abs_function}
+x <- seq(-5, 5, by = 1)
+abs_x <- abs(x)
+
+data.frame(X = x, Absolute_Value = abs_x)
+```
+
+絕對值函數的圖形：
+
+```{r abs_plot, fig.width=8, fig.height=6}
+plot(x, abs_x, type = "l", col = "purple",
+     xlab = "x", ylab = "|x|", main = "Absolute Value Function")
+```
+
